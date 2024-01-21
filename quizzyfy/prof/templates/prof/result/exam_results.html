@@ -1,0 +1,31 @@
+{% extends 'prof/base/base.html' %}
+
+{% block title %}Exam Results{% endblock title %}
+{% block navbar_title %}{{ prof.username }}{% endblock navbar_title %}
+{% block navitem_title %}Exam Results{% endblock navitem_title %}
+
+{% block buttons %}
+    <a class="btn btn-secondary" href="{% url 'main:logoutUser' %}">Logout</a>
+{% endblock buttons %}
+
+{% block body %}
+    <div class="container">
+        <h2>Exam Results</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Exam Name</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exam in exams %}
+                    <tr>
+                        <td>{{ exam.examname }}</td>
+                        <td><a href="{% url 'prof:view_exam_scores' exam_id=exam.id%}" class="btn btn-primary">View Exam Results</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock body %}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ exam.examname }} - Exam Scores</title>
+
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+
+        
+        <h1 class="mt-5">{{ exam.examname }} - Exam Scores</h1>
+
+        <h2 class="mt-4">All Scores</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Exam</th>
+                    <th>Score</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in students %}
+                    <tr>
+                        <td>{{ exam.examname }}</td>
+                        <td>{{ s.score }}</td>
+                        <td>{{ s.student.username }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2 class="mt-4">Average Score: {{ average_score|default:"N/A" }}</h2>
+
+        <h2 class="mt-4">Top 5 Scores</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Score</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in top_scores %}
+                    <tr>
+                        <td>{{ s.score }}</td>
+                        <td>{{ s.student.username }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2 class="mt-4">Bottom 5 Scores</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Score</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in bottom_scores %}
+                    <tr>
+                        <td>{{ s.score }}</td>
+                        <td>{{ s.student.username }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+    <!-- Include Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

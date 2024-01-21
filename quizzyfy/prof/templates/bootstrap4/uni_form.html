@@ -1,0 +1,11 @@
+{% load crispy_forms_tags %}
+
+{% block crispy %}
+
+<div class="uniForm">
+    {% if form.helper.inputs %}
+        {% crispy form form.helper %}
+    {% endif %}
+</div>
+
+{% endblock %}

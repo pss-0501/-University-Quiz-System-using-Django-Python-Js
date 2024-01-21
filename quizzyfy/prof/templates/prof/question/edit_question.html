@@ -1,0 +1,53 @@
+{% extends 'prof/base/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Edit Question{% endblock title %}
+{% block navbar_title %}{{ prof.username }}{% endblock navbar_title %}
+{% block navitem_title %}Edit Question{% endblock navitem_title %}
+
+{% block buttons %}
+    <a class="btn btn-warning mx-2" href="{% url 'prof:view_all_ques' %}">Cancel</a>
+    <a class="btn btn-light" href="{% url 'prof:index' %}">Home</a>
+{% endblock buttons %}
+
+{% block body %}
+    <div align='center' class="container-fluid my-3">
+        <div class="container d-flex h-100 row justify-content-center col-12">
+            <form method="post" action="{% url 'prof:edit_question' ques_qno=ques.qno %}" class="my-3 p-4 border rounded">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    {{ form.question.label_tag }}
+                    {{ form.question }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.optionA.label_tag }}
+                    {{ form.optionA }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.optionB.label_tag }}
+                    {{ form.optionB }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.optionC.label_tag }}
+                    {{ form.optionC }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.optionD.label_tag }}
+                    {{ form.optionD }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.answer.label_tag }}
+                    {{ form.answer }}
+                </div>
+
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+{% endblock body %}

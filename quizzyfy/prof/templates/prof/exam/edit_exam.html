@@ -1,0 +1,51 @@
+{% extends 'prof/base/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Edit Exam{% endblock title %}
+{% block navbar_title %}Edit Exam{% endblock navbar_title %}
+
+{% block buttons %}
+    <a class="btn btn-warning" href="{% url 'prof:view_exams' %}">Cancel</a>
+{% endblock buttons %}
+
+{% block body %}
+    <div align='center' class="container-fluid">
+        <div class="container d-flex h-100 row justify-content-center col-50">
+            <form align='center' method="POST" action="{% url 'prof:edit_exam' exam_id=exam.id %}">
+                {% csrf_token %}
+
+                {{ examform.name.label_tag }}
+                {{ examform.name }}
+                <br>
+                
+                {{ examform.total_marks.label_tag }}
+                {{ examform.total_marks }}
+                <br>
+                
+                {{ examform.duration.label_tag }}
+                {{ examform.duration }}
+                <br>
+                
+                {{ examform.question_paper.label_tag }}
+                {{ examform.question_paper }}
+                <br>
+                
+                {{ examform.student_group.label_tag }}
+                {{ examform.student_group }}
+                <br>
+                
+                {{ examform.start_time.label_tag }}
+                {{ examform.start_time }}
+                <br>
+                
+                {{ examform.end_time.label_tag }}
+                {{ examform.end_time }}
+                <br>
+                
+                <input class="btn btn-success" type="submit" value="Update">
+            </form>
+        </div>
+        <a onclick="return confirm('Are you sure you want to delete this exam?')" class="btn btn-danger my-3" href="{% url 'prof:delete_exam' exam.id %}">Delete</a><br>
+    </div>
+{% endblock body %}

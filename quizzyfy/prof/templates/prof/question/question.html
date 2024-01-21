@@ -1,0 +1,63 @@
+{% extends 'prof/base/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}About question{% endblock title %}
+{% block navbar_title %}{{ prof.username }}{% endblock navbar_title %}
+{% block navitem_title %}Create new Question{% endblock navitem_title %}
+
+{% block buttons %}
+    <a href="{% url 'prof:view_all_ques' %}" class="btn btn-primary mx-1">View All Questions</a>
+    <a href="{% url 'prof:index' %}" class="btn btn-light mx-2">Home</a>
+{% endblock buttons %}
+
+{% block body %}
+    <div class="container-fluid my-2">
+        <div align="center">
+            <div class="container d-flex h-100 row justify-content-center col-12">
+                <form method="post" action="{% url 'prof:add_question' %}" class="my-3 p-4 border rounded">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        {{ form.question.label_tag }}
+                        {{ form.question }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.optionA.label_tag }}
+                        {{ form.optionA }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.optionB.label_tag }}
+                        {{ form.optionB }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.optionC.label_tag }}
+                        {{ form.optionC }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.optionD.label_tag }}
+                        {{ form.optionD }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.answer.label_tag }}
+                        {{ form.answer }}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
